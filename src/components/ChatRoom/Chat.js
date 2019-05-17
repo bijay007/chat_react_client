@@ -27,6 +27,7 @@ const User = styled.div`
 const Chat = props => {
   const styleName = string => string.charAt(0).toUpperCase() + string.slice(1)
   const hourMinutes = string => {
+    console.log('HOURMINUTE', string)
     let strArr = string.split('');
     return strArr.splice(strArr.length - 8, 5).join('');
   }
