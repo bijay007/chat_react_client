@@ -1,4 +1,4 @@
-## Simple react app using graphQL backend (https://github.com/bijay007/chat_graphql_server) for real time chatting (more features in progress...)
+## Simple react app using [graphQL server](https://github.com/bijay007/chat_graphql_server) for real time chatting (more features in progress...)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
