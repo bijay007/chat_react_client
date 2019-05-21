@@ -39,7 +39,6 @@ const AddChat = props => {
   const { currentUser } = props;
   const [message, bind] = useState('');
   const sendMessage =  async function (message, apolloClient) {
-    bind('');
     await apolloClient.mutate({
       mutation: CREATE_MESSAGE_MUTATION,
       variables: {
@@ -47,11 +46,13 @@ const AddChat = props => {
         message: message
       }
     })
+    clearInputField();
   }
   const handleSubmit = e => {
     e.preventDefault();
-    bind('');
+    clearInputField();
   }
+  const clearInputField = () => bind('')
   return (
     <ApolloConsumer>
       {
