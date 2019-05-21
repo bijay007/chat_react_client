@@ -26,18 +26,13 @@ const User = styled.div`
 
 const Chat = props => {
   const styleName = string => string.charAt(0).toUpperCase() + string.slice(1)
-  const hourMinutes = string => {
-    console.log('HOURMINUTE', string)
-    let strArr = string.split('');
-    return strArr.splice(strArr.length - 8, 5).join('');
-  }
   const { sender, message, created } = props.chat;
 
   return (
     <ChatBlock>
       <User>
         <h4>{styleName(sender)}</h4>
-        <div className={'time'}>{hourMinutes(created)}</div>
+        <div className={'time'}>{created}</div>
       </User>
       <p>{message}</p>
     </ChatBlock>
