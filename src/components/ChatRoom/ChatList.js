@@ -14,7 +14,7 @@ const Wrapper = styled.section`
 `
 
 const ChatList = (props) => {
-  const { currentUser } = props;
+  const { userId, userName } = props;
   return (
     <Query query={GET_CHATS_QUERY}>
       {
@@ -25,9 +25,9 @@ const ChatList = (props) => {
           return (
             <Wrapper>
               {
-                chats.map((chat, index) => <Chat key={index + Math.random()} chat={chat} />)
+                chats.map((chat, index) => <Chat key={index + Math.random()} chat={chat} userName={userName} />)
               }
-              <AddChat currentUser={currentUser}/>
+              <AddChat userId={userId} />
             </Wrapper>
           )
         }

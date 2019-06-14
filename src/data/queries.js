@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 const ChatFragment = gql`
 	fragment Chat on Chat {
 		id
-    sender
+    senderId
     message
     created
 	}

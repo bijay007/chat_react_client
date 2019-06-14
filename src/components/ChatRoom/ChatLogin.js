@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import uuidv1 from 'uuid/v1';
 import ChatList from 'components/ChatRoom/ChatList';
 
 const Wrapper = styled.div`
@@ -46,7 +47,7 @@ const ChatLogin = () => {
     <Wrapper>
     {
       userLogged
-      ? <ChatList currentUser={userName}/>
+      ? <ChatList userId={uuidv1()} userName={userName} />
       : <>
           <UserName
             value={userName}
