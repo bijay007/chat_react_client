@@ -25,9 +25,9 @@ const ChatList = (props) => {
           return (
             <Wrapper>
               {
-                chats.map((chat, index) => <Chat key={index + Math.random()} chat={chat} userName={userName} />)
+                chats.map((chat, index) => <Chat key={index + Math.random()} chat={chat} />)
               }
-              <AddChat userId={userId} />
+              <AddChat userId={userId} userName={userName} />
             </Wrapper>
           )
         }

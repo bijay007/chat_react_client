@@ -4,9 +4,19 @@ const ChatFragment = gql`
 	fragment Chat on Chat {
 		id
     senderId
+    senderName
     message
     created
 	}
+`
+
+const UserFragment = gql`
+  fragment User on User {
+    id,
+    name,
+    email,
+    chats
+  }
 `
 
 const GET_MOCK_CHAT_QUERY = gql`
@@ -26,9 +36,19 @@ const GET_CHATS_QUERY = gql`
   }
   ${ChatFragment}
 `
+const GET_USER_QUERY = gql`
+  query GetUserQuery {
+    getUser {
+      ...User
+    }
+  }
+  ${UserFragment}
+`
 
 export {
   GET_MOCK_CHAT_QUERY,
   GET_CHATS_QUERY,
-  ChatFragment
+  GET_USER_QUERY,
+  ChatFragment,
+  UserFragment
 }

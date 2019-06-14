@@ -5,6 +5,7 @@ export const GET_MESSAGE_SUBSCRIPTION = gql`
     getMessage {
       id
       senderId
+      senderName
       message
       created
     }

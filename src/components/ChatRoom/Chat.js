@@ -26,13 +26,12 @@ const User = styled.div`
 
 const Chat = props => {
   const styleName = string => string.charAt(0).toUpperCase() + string.slice(1)
-  const { message, created } = props.chat;
-  const { userName } = props;
+  const { senderName, message, created } = props.chat;
 
   return (
     <ChatBlock>
       <User>
-        <h4>{styleName(userName)}</h4>
+        <h4>{styleName(senderName)}</h4>
         <div className={'time'}>{created}</div>
       </User>
       <p>{message}</p>

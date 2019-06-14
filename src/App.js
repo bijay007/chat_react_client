@@ -5,9 +5,10 @@ import apolloClientOptions from './config/apolloConfig';
 import styled from 'styled-components';
 
 // Components
+import { BrowserRouter as Router } from "react-router-dom";
 import Subscription from 'components/Subscription/Subscription';
 import Header from 'components/Header/Header';
-import ChatLogin from 'components/ChatRoom/ChatLogin';
+import ChatLogin from 'components/Auth/ChatLogin';
 
 const Wrapper = styled.main`
   display: flex;
@@ -23,7 +24,7 @@ const App = () => {
       <Subscription />
       <Wrapper>
         <Header />
-        <ChatLogin />
+        <Router path='/' component={ChatLogin} />
       </Wrapper>
     </ApolloProvider>
   )

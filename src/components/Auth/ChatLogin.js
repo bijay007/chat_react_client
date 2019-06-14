@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { BrowserRouter as Router } from "react-router-dom";
 import uuidv1 from 'uuid/v1';
-import ChatList from 'components/ChatRoom/ChatList';
+import ChatList from '../ChatRoom/ChatList';
+import RegisterUser from './RegisterUser';
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,21 +42,23 @@ const Login = styled.button`
 `
 
 const ChatLogin = () => {
-  const [userName, addUser] = useState('');
-  const [userLogged, setLogged] = useState(false);
-  const enterChatroom = userName => setLogged(userName !== '')
+  const [name, addUser] = useState('');
+  const [userExists, setLogged] = useState(false);
+  const enterChatroom = userName => {
+    setLogged(userName !== '')
+  }
   return (
     <Wrapper>
     {
-      userLogged
-      ? <ChatList userId={uuidv1()} userName={userName} />
+      userExists
+      ? <ChatList userId={uuidv1()} userName={name} />
       : <>
           <UserName
-            value={userName}
+            value={name}
             onChange={e => addUser(e.target.value)}
             placeholder={'Enter your name to join...'}>
           </UserName>
-          <Login onClick={e => enterChatroom(userName)}>Join chatroom</Login>
+          <Login onClick={e => enterChatroom(name)}>Join chatroom</Login>
         </>
     }
     </Wrapper>

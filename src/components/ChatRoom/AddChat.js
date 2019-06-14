@@ -36,13 +36,14 @@ const Icon = styled.img`
 `
 
 const AddChat = props => {
-  const { userId } = props;
+  const { userId, userName } = props;
   const [message, bind] = useState('');
   const sendMessage =  async function (message, apolloClient) {
     await apolloClient.mutate({
       mutation: CREATE_MESSAGE_MUTATION,
       variables: {
         senderId: userId,
+        senderName: userName,
         message: message
       }
     })
