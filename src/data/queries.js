@@ -15,8 +15,11 @@ const UserFragment = gql`
     id,
     name,
     email,
-    chats
+    chats {
+      ...Chat
+    }
   }
+  ${ChatFragment}
 `
 
 const GET_MOCK_CHAT_QUERY = gql`
@@ -37,8 +40,8 @@ const GET_CHATS_QUERY = gql`
   ${ChatFragment}
 `
 const GET_USER_QUERY = gql`
-  query GetUserQuery {
-    getUser {
+  query GetUserQuery($userName: String!) {
+    getUser(userName: $userName) {
       ...User
     }
   }
