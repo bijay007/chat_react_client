@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import uuidv1 from 'uuid/v1';
-import ChatList from '../ChatRoom/ChatList';
 import UserRedirect from './UserRedirect';
 
 const Wrapper = styled.div`
@@ -50,7 +48,7 @@ const ChatLogin = () => {
     <Wrapper>
     {
       userProvided
-      ? <ChatList userId={uuidv1()} userName={name} /> /*<UserRedirect userName={name} />*/
+      ? <UserRedirect userName={name} />
       : <>
           <UserName
             value={name}

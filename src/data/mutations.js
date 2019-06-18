@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const CREATE_MESSAGE_MUTATION = gql`
+const CREATE_MESSAGE_MUTATION = gql`
   mutation CreateMessageMutation($senderId: ID!, $senderName: String!, $message: String!) {
     createMessage(
       senderId: $senderId,
@@ -13,3 +13,22 @@ export const CREATE_MESSAGE_MUTATION = gql`
     }
   }
 `;
+
+const CREATE_USER_MUTATION = gql`
+  mutation CreateUserMutation($name: String!, $email: String!, $id: ID!) {
+    createUser(
+      name: $name,
+      email: $email,
+      id: $id
+    ) {
+      name,
+      email,
+      id
+    }
+  }
+`;
+
+export {
+  CREATE_MESSAGE_MUTATION,
+  CREATE_USER_MUTATION
+}

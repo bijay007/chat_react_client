@@ -26,8 +26,8 @@ const App = () => {
         <Subscription />
         <Wrapper>
           <Header />
-          <Route path='/' component={ChatLogin} />
-          <Route path='/chat' component={ChatList} />
+          <Route exact path='/' component={ChatLogin} />
+          <Route exact path='/chat' component={ChatList} />
         </Wrapper>
       </ApolloProvider>
     </Router>

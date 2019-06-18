@@ -14,7 +14,7 @@ const Wrapper = styled.section`
 `
 
 const ChatList = (props) => {
-  const { userId, userName } = props;
+  const { userId, userName } = props.location;
   return (
     <Query query={GET_CHATS_QUERY}>
       {
