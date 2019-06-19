@@ -18,7 +18,7 @@ class UserRedirect extends Component {
 
   fetchUser = async() => {
     try {
-      const { userName, client } = this.props;
+      const { userName, password, client } = this.props;
       const user = await client.query({
         query: GET_USER_QUERY,
         fetchPolicy: 'network-only',

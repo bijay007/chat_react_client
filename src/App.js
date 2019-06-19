@@ -10,12 +10,14 @@ import Subscription from 'components/Subscription/Subscription';
 import Header from 'components/Header/Header';
 import ChatLogin from 'components/Auth/ChatLogin';
 import ChatList from 'components/ChatRoom/ChatList';
+import background from 'assests/background.png';
 
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem;
+  height: 100vh;
+  background: #000 url(${background});
 `
 const App = () => {
   const apolloClient = new ApolloClient({...apolloClientOptions});
