@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import UserRedirect from './UserRedirect';
+import { Link } from 'react-router-dom';
+import signup from 'assests/sign-up.png';
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   padding: 0.5rem;
 `
 const LoginWrapper = styled.div`
   filter: drop-shadow(-1px 7px 5px rgba(50, 50, 0, 0.6));
+`
+const SignUp = styled.img`
+  height: 4.5rem;
+  width: auto;
+  padding: 1rem;
+  transition: all 0.5s ease;
+  :hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `
 const LoginContent = styled.div`
   display: flex;
@@ -42,7 +52,7 @@ const Input = styled.input`
 const LoginBtn = styled.button`
   font-weight: bold;
   font-size: 1.5rem;
-  margin: 1rem auto;
+  padding: 0.5rem;
   text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   &:hover {
@@ -55,35 +65,48 @@ const LoginBtn = styled.button`
     outline: none;
   }
 `
+const ErrorMessage = styled.div`
+  padding: 0.5rem;
+  color: red;
+  font-weight: 500;
+  height: 1.5rem;
+`
 
-const ChatLogin = () => {
+const UserLogin = () => {
   const [user, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [userDataProvided, setDataProvided] = useState(false);
-  const enterChatroom = (name, password) => {
-    setDataProvided(name !== '' && password !== '')
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const validateUser = (name, password) => {
+    if (name !== '' && password !== '') {
+      setErrorMsg('');
+      console.log('Fetch user info from db. If incorrect set different error msg');
+      return;
+    }
+    setErrorMsg('Complete both fields to log in.');
   }
+
   return (
     <Wrapper>
-    {
-      userDataProvided
-      ? <UserRedirect userName={user} password={password} />
-      : <LoginWrapper>
-          <LoginContent>
-              <Input
-                value={user}
-                onChange={e => setUserName(e.target.value)}
-                placeholder={'Enter your name...'} />
-              <Input
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder={'Enter your password...'} />
-              <LoginBtn onClick={() => enterChatroom(user, password)}>Join chatroom</LoginBtn>
-          </LoginContent>
-        </LoginWrapper>
-    }
+      <LoginWrapper>
+        <LoginContent>
+          <Input
+            value={user}
+            onChange={e => setUserName(e.target.value)}
+            placeholder={'Enter your name...'} />
+          <Input
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder={'Enter your password...'} />
+          <LoginBtn onClick={() => validateUser(user, password)}>Join chatroom</LoginBtn>
+          <ErrorMessage>{errorMsg}</ErrorMessage>
+        </LoginContent>
+      </LoginWrapper>
+      <Link to='/signup'>
+        <SignUp src={signup} />
+      </Link>
     </Wrapper>
   )
 }
 
-export default ChatLogin;
+export default UserLogin;

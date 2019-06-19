@@ -11,7 +11,7 @@ const ModalContainer = styled.div({
   left: '0',
   width: '100%',
   height: '100%',
-  background: 'rgba(0, 0, 0, 0.6)',
+  background: 'rgba(0, 0, 0, 0.6)'
 });
 const ModalBody = styled.div({
   position: 'fixed',
@@ -50,11 +50,11 @@ const Input = styled.input({
   boxShadow: '0 0 10px #9ecaed'
 })
 
-const RegisterUser = (props) => {
+const UserRegister = (props) => {
   const [userName, setUserName] = useState('');
   const [email, setUserEmail] = useState('');
   const [valid, setValidity] = useState(true);
-  const [newUser, setNewUser] = useState({ name: '', id: '' });
+  const [modalDismiss, setModalDismiss] = useState(false);
 
   const createUser = async () => {
     let userCreated = await props.client.mutate({
@@ -66,7 +66,13 @@ const RegisterUser = (props) => {
       }
     });
     const { name, id } = userCreated.data.createUser;
-    setNewUser({ name: name, id: id });
+    props.history.push({
+      pathname: '/chat',
+      state: {
+        userName: name,
+        userId: id
+      }
+    });
   }
 
   const basicValidation = async (e) => {
@@ -79,15 +85,16 @@ const RegisterUser = (props) => {
       : setValidity(false);
   }
 
+  const dismissModal = e => {
+    e.stopPropagation();
+    setModalDismiss(true);
+  }
+
   return (
-    newUser.name
-    ? <Redirect to={{
-        pathname: '/chat',
-        userName: newUser.name,
-        userId: newUser.id
-      }} />
-    : <ModalContainer>
-        <ModalBody>
+    modalDismiss
+    ? <Redirect to='/' />
+    : <ModalContainer onClick={e => dismissModal(e)}>
+        <ModalBody onClick={e => e.stopPropagation()}>
           <Form onSubmit={e => basicValidation(e)}>
             <Block>
               <Label htmlFor='name'>Name</Label>
@@ -115,4 +122,4 @@ const RegisterUser = (props) => {
 }
 
 
-export default withRouter(withApollo(RegisterUser)); // -__-
+export default withRouter(withApollo(UserRegister)); // -__-

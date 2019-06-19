@@ -8,7 +8,8 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Subscription from 'components/Subscription/Subscription';
 import Header from 'components/Header/Header';
-import ChatLogin from 'components/Auth/ChatLogin';
+import UserLogin from 'components/Auth/UserLogin';
+import UserRegister from 'components/Auth/UserRegister';
 import ChatList from 'components/ChatRoom/ChatList';
 import background from 'assests/background.png';
 
@@ -28,7 +29,8 @@ const App = () => {
         <Subscription />
         <Wrapper>
           <Header />
-          <Route exact path='/' component={ChatLogin} />
+          <Route exact path='/' component={UserLogin} />
+          <Route exact path='/signup' component={UserRegister} />
           <Route exact path='/chat' component={ChatList} />
         </Wrapper>
       </ApolloProvider>

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { withApollo } from 'react-apollo';
 import { GET_USER_QUERY } from 'data/queries';
 import { Redirect } from 'react-router-dom';
-import RegisterUser from './RegisterUser';
+import UserRegister from './UserRegister';
 
+// Remove it and add logic to the specific login/signup component
 class UserRedirect extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +44,7 @@ class UserRedirect extends Component {
         }}
       />)
     }
-    return <RegisterUser name={this.props.userName}/>
+    return <UserRegister name={this.props.userName}/>
   }
 }
 
