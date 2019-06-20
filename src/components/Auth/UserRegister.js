@@ -13,28 +13,34 @@ const ModalContainer = styled.div({
   height: '100%',
   background: 'rgba(0, 0, 0, 0.6)'
 });
-const ModalBody = styled.div({
-  position: 'fixed',
-  display: 'flex',
-  flexDirection: 'column',
-  background: '#fff',
-  height: 'auto',
-  width: '30%',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%,-50%)',
-  padding: '8px',
-  fontSize: '17px',
-  boxShadow: '0 0 8px #ff8989',
-});
-const Form = styled.form({
-  display: 'flex',
-  flexDirection: 'column',
-  alignContent: 'space-between',
-  padding: '5px'
-})
+const ModalBody = styled.div`
+  position: fixed;
+  display: flex;
+  flexDirection: column;
+  justifyContent: 'center';
+  height: auto;
+  width: 35%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  fontSize: 1.1rem;
+  boxShadow: 0 0 8px #ff8989;
+  borderRadius: 0.5rem;
+  @media(max-width: 40rem) {
+    width: 45%;
+  }
+`;
+const Title = styled.h2`
+  margin: 1rem auto;
+  letter-spacing: 2px;
+  background: linear-gradient(to left, #f7606a 10%, #330867 80%);
+  background-clip: 'text';
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
 const Block = styled.div({
-  padding: '5px'
+  padding: '0.5rem 1.8rem',
 })
 const Label = styled.label({
   paddingRight: '8px'
@@ -49,22 +55,36 @@ const Input = styled.input({
   borderColor: '#9ecaed',
   boxShadow: '0 0 10px #9ecaed'
 })
+const RegisterBtn = styled.button({
+  fontWeight: 'bold',
+  fontSize: '1.2rem',
+  padding: '1rem',
+  textShadow: '2px 2px 3px rgba(180, 150, 150, 0.8)'
+})
 
 const UserRegister = (props) => {
   const [userName, setUserName] = useState('');
   const [email, setUserEmail] = useState('');
-  const [valid, setValidity] = useState(true);
+  const [password, setUserPassword] = useState('');
+
+  const [errorMsg, setErrorMsg] = useState('');
   const [modalDismiss, setModalDismiss] = useState(false);
 
   const createUser = async () => {
     let userCreated = await props.client.mutate({
       mutation: CREATE_USER_MUTATION,
       variables: {
+        id: uuidv1(),
         name: userName,
         email: email,
-        id: uuidv1()
+        password: password
       }
     });
+    // NOTE: Can there be more than 1 error?? If so, both needs to be shown nicely in the UI.
+    if (userCreated.errors) {
+      setErrorMsg(userCreated.errors[0].message);
+      return;
+    }
     const { name, id } = userCreated.data.createUser;
     props.history.push({
       pathname: '/chat',
@@ -80,9 +100,10 @@ const UserRegister = (props) => {
     // TODO: Improve validation rules
     const userNameValid = userName !== '';
     const emailValid = /\S+@\S+\.\S+/.test(email);
-    userNameValid && emailValid
+    const passwordValid = password.length >= 4;
+    userNameValid && emailValid && passwordValid
       ? createUser()
-      : setValidity(false);
+      : setErrorMsg('Please fill valid data.');
   }
 
   const dismissModal = e => {
@@ -95,27 +116,33 @@ const UserRegister = (props) => {
     ? <Redirect to='/' />
     : <ModalContainer onClick={e => dismissModal(e)}>
         <ModalBody onClick={e => e.stopPropagation()}>
-          <Form onSubmit={e => basicValidation(e)}>
-            <Block>
-              <Label htmlFor='name'>Name</Label>
-              <Input value={userName}
-                id='name'
-                placeholder={props.name}
-                onChange={e => setUserName(e.target.value)} />
-            </Block>
-            <Block>
-              <Label htmlFor='email'>Email</Label>
-              <Input value={email}
-                id='email'
-                onChange={e => setUserEmail(e.target.value)} />
-            </Block>
-            <button onClick={basicValidation}>Register</button>
-            {
-              valid
-              ? null
-              : <Block style={{color: 'red'}}>Invalid data. Please correct.</Block>
-            }     
-          </Form>
+          <div className='auth-form-wrapper'>
+            <form className='auth-form' onSubmit={e => basicValidation(e)}>
+              <Title>Sign up</Title>
+              <Block>
+                <Label htmlFor='name'>Name</Label>
+                <Input value={userName}
+                  id='name'
+                  placeholder={props.name}
+                  onChange={e => setUserName(e.target.value)} />
+              </Block>
+              <Block>
+                <Label htmlFor='email'>Email</Label>
+                <Input value={email}
+                  id='email'
+                  onChange={e => setUserEmail(e.target.value)} />
+              </Block>
+              <Block>
+                <Label htmlFor='password'>Password</Label>
+                <Input value={password}
+                  type='password'
+                  id='password'
+                  onChange={e => setUserPassword(e.target.value)} />
+              </Block>
+              <RegisterBtn type='submit'>Register</RegisterBtn>
+              <div className='errorMsg'>{errorMsg}</div>     
+            </form>
+          </div>
         </ModalBody>
       </ModalContainer>
   )

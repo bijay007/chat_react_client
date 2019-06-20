@@ -15,10 +15,11 @@ const CREATE_MESSAGE_MUTATION = gql`
 `;
 
 const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation($name: String!, $email: String!, $id: ID!) {
+  mutation CreateUserMutation($name: String!, $email: String!, $password: String!, $id: ID!) {
     createUser(
       name: $name,
       email: $email,
+      password: $password,
       id: $id
     ) {
       name,

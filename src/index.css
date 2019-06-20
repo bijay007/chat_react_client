@@ -16,23 +16,51 @@ code {
 
 /* Default elements styling */
 
-/* BUTTONS */
+/* BUTTON */
 button {
   border: none;
-  padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
   background: transparent;
   font-family: sans-serif;
-  font-size: 1rem;
   cursor: pointer;
   text-align: center;
 }
-button:hover,
-button:focus {
-  background: lightblue;
+button:hover {
+  color: rgba(0,0,0,0.6);
+  text-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
 }
-
-button:active {
-  transform: scale(0.99);
+button:focus {
+  outline: none;
+}
+/* Custom Form */
+form.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 0.5rem;
+  background-color: lightblue;
+  clip-path: polygon(3% 3%, 100% 0, 97% 97%, 0 100% );
+  width: 95%;
+}
+div.auth-form-wrapper {
+  width: 35vw;
+  filter: drop-shadow(-1px 7px 5px rgba(50, 50, 0, 0.6));
+}
+@media (max-width: 640px) {
+  div.auth-form-wrapper {
+    width: 60vw;
+  }
+}
+@media (min-width: 640px) and (max-width: 1024px) {
+  div.auth-form-wrapper {
+    width: 45vw;
+  }
+}
+/* Custom error message div */
+div.errorMsg {
+  padding: 0.5rem;
+  color: rgb(255, 0, 0, 0.9);
+  font-weight: 500;
+  height: 1.5rem;
 }

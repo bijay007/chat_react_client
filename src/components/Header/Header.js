@@ -16,14 +16,14 @@ const Title = styled.div`
     margin: 0;
     padding-right: 2rem;
   }
-  div {
+  h2 {
     font-weight: 600;
     font-size: 1.8rem;
     letter-spacing: 2px;
     background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding-right: 2rem;
   }
 `
 
@@ -31,7 +31,7 @@ const Header = () => (
   <Wrapper>
     <Title>
       <h1>Chatter</h1>
-      <div>by Bijay</div>
+      <h2>by Bijay</h2>
     </Title>
   </Wrapper>
 )
