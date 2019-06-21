@@ -9,8 +9,18 @@ const MessageBox = styled.form`
   height: 3rem;
   border-radius: 0.5rem;
   margin: 2rem 0;
-  width: 100%;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  button {
+    display: flex;
+    justify-content: center;
+    padding: 0.25rem;
+    width: 20%;
+    height: 100%;
+  }
+  img {
+    height: 80%;
+    width: auto;
+  }
 `
 const Input = styled.input`
   border: none;
@@ -19,54 +29,39 @@ const Input = styled.input`
   padding: 0.5rem;
   width: 80%;
 `
-const Button = styled.button`
-  padding: 0.25rem;
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  &:hover, &:focus {
-    outline: none;
-    background: transparent;
-  }
-`
-const Icon = styled.img`
-  height: 80%;
-  width: 80%;
-`
 
 const AddChat = props => {
   const { userId, userName } = props;
-  const [message, bind] = useState('');
-  const sendMessage =  async function (message, apolloClient) {
-    await apolloClient.mutate({
-      mutation: CREATE_MESSAGE_MUTATION,
-      variables: {
-        senderId: userId,
-        senderName: userName,
-        message: message
-      }
-    })
-    clearInputField();
-  }
-  const handleSubmit = e => {
+  const [message, setMessage] = useState('');
+
+  const sendMessage =  async function (e, message, apolloClient) {
     e.preventDefault();
-    clearInputField();
+    if (message) {
+      await apolloClient.mutate({
+        mutation: CREATE_MESSAGE_MUTATION,
+        variables: {
+          senderId: userId,
+          senderName: userName,
+          message: message
+        }
+      })
+      setMessage('');
+    }
   }
-  const clearInputField = () => bind('')
+
   return (
     <ApolloConsumer>
       {
         apolloClient => (
-          <MessageBox onSubmit={(e) => handleSubmit(e)}>
+          <MessageBox onSubmit={(e) => sendMessage(e, message, apolloClient)}>
             <Input
               value={message}
-              placeholder={'Press Enter or Send to publish...'}
-              onChange={e => bind(e.target.value)}
+              placeholder={'write your message here...'}
+              onChange={e => setMessage(e.target.value)}
             />
-            <Button onClick={() => sendMessage(message, apolloClient)}>
-              <Icon src={icon} /> {/* Icon made by Freepik from www.flaticon.com */}
-            </Button>
+            <button type='submit'>
+              <img alt='send-message' src={icon} /> {/* Icon made by Freepik from www.flaticon.com */}
+            </button>
           </MessageBox>     
         )
       }

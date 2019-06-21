@@ -101,12 +101,11 @@ const UserRegister = (props) => {
   const basicValidation = async (e) => {
     e.preventDefault();
     // TODO: Improve validation rules
-    const userNameValid = userName !== '';
     const emailValid = /\S+@\S+\.\S+/.test(email);
     const passwordValid = password.length >= 4;
-    userNameValid && emailValid && passwordValid
+    userName && emailValid && passwordValid
       ? createUser()
-      : setErrorMsg('Please fill valid data.');
+      : setErrorMsg('Please fill all fields with valid data.');
   }
 
   const dismissModal = e => {
@@ -150,6 +149,5 @@ const UserRegister = (props) => {
       </ModalContainer>
   )
 }
-
 
 export default withRouter(withApollo(UserRegister)); // -__-

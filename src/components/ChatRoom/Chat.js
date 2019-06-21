@@ -5,23 +5,23 @@ const ChatBlock = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 0.75rem;
-  h4 {
-    margin: 0;
+  p {
+    margin: 0 1.5rem;
+  }
+`
+const User = styled.div`
+  display: flex;
+  padding: 0.25rem 0;
+  align-items: baseline;
+  .title {
+    font-weight: bold;
+    font-size: 1.1rem;
   }
   .time {
     padding-left: 0.5rem;
     color: grey;
     font-size: 0.9rem;
   }
-  p {
-    margin: 0;
-    padding-left: 1rem;
-  }
-`
-const User = styled.div`
-  display: flex;
-  padding: 0.25rem 0;
-  align-items: center;
 `
 
 const Chat = props => {
@@ -31,7 +31,7 @@ const Chat = props => {
   return (
     <ChatBlock>
       <User>
-        <h4>{styleName(senderName)}</h4>
+        <div className={'title'}>{styleName(senderName)}</div>
         <div className={'time'}>{created}</div>
       </User>
       <p>{message}</p>

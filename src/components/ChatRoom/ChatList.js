@@ -10,7 +10,7 @@ import AddChat from 'components/ChatRoom/AddChat';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1.2rem;
 `
 
 const ChatList = (props) => {
@@ -25,7 +25,7 @@ const ChatList = (props) => {
           return (
             <Wrapper>
               {
-                chats.map((chat, index) => <Chat key={index + Math.random()} chat={chat} />)
+                chats.map((chat, index) => <Chat key={index + Math.random(index)} chat={chat} />)
               }
               <AddChat userId={userId} userName={userName} />
             </Wrapper>

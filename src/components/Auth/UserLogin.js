@@ -49,38 +49,31 @@ const UserLogin = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const fetchUser = async(name, password) => {
-    try {
-      const { client } = props;
-      const user = await client.query({
-        query: GET_USER_QUERY,
-        fetchPolicy: 'network-only',
-        variables: { userName: name }
+    const { client } = props;
+    const user = await client.query({
+      query: GET_USER_QUERY,
+      fetchPolicy: 'network-only',
+      variables: { userName: name }
+    });
+    if (user.data.getUser) {
+      const { name, id } = user.data.getUser;
+      props.history.push({
+        pathname: '/chat',
+        state: {
+          userName: name,
+          userId: id
+        }
       });
-      if (user.data.getUser) {
-        const { name, id } = user.data.getUser;
-        props.history.push({
-          pathname: '/chat',
-          state: {
-            userName: name,
-            userId: id
-          }
-        });
-        return;
-      }
-      setErrorMsg('User doesn\'t exist. Please sign up.');
-    } catch (err) {
-      console.log(err)
+      return;
     }
+    setErrorMsg('User doesn\'t exist. Please sign up.');
   }
 
   const validateUser = (e, name, password) => {
     e.preventDefault();
-    if (name !== '' && password !== '') {
-      setErrorMsg('');
-      fetchUser(name, password);
-      return;
-    }
-    setErrorMsg('Complete both fields to log in.');
+    name && password
+    ? fetchUser(name, password)
+    : setErrorMsg('Complete both fields to log in.');
   }
 
   return (
