@@ -47,20 +47,25 @@ div.auth-form-wrapper {
   width: 35vw;
   filter: drop-shadow(-1px 7px 5px rgba(50, 50, 0, 0.6));
 }
-@media (max-width: 640px) {
-  div.auth-form-wrapper {
-    width: 60vw;
-  }
-}
-@media (min-width: 640px) and (max-width: 1024px) {
-  div.auth-form-wrapper {
-    width: 45vw;
-  }
-}
 /* Custom error message div */
 div.errorMsg {
   padding: 0.5rem;
   color: rgb(255, 0, 0, 0.9);
   font-weight: 500;
   height: 1.5rem;
+}
+
+/* Media specific queries */
+@media (max-width: 640px) {
+  div.auth-form-wrapper {
+    width: 60vw;
+  }
+  div.errorMsg {
+    padding: 1rem 0.5rem;
+  }
+}
+@media (min-width: 640px) and (max-width: 1024px) {
+  div.auth-form-wrapper {
+    width: 45vw;
+  }
 }

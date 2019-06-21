@@ -65,7 +65,9 @@ const UserLogin = (props) => {
             userId: id
           }
         });
+        return;
       }
+      setErrorMsg('User doesn\'t exist. Please sign up.');
     } catch (err) {
       console.log(err)
     }

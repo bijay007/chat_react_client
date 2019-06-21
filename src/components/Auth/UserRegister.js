@@ -19,7 +19,7 @@ const ModalBody = styled.div`
   flexDirection: column;
   justifyContent: 'center';
   height: auto;
-  width: 35%;
+  width: 45%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -28,7 +28,10 @@ const ModalBody = styled.div`
   boxShadow: 0 0 8px #ff8989;
   borderRadius: 0.5rem;
   @media(max-width: 40rem) {
-    width: 45%;
+    width: 75%;
+  }
+  @media(min-width: 40rem) & (max-width: 60rem) {
+    width: 60%;
   }
 `;
 const Title = styled.h2`
