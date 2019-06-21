@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { withApollo } from 'react-apollo';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { GET_USER_QUERY } from 'data/queries';
+import { withRouter, Link } from 'react-router-dom';
 import signup from 'assests/sign-up.png';
 
 const Wrapper = styled.div`
@@ -41,16 +43,39 @@ const LoginBtn = styled.button`
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 `
 
-const UserLogin = () => {
+const UserLogin = (props) => {
   const [user, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  const fetchUser = async(name, password) => {
+    try {
+      const { client } = props;
+      const user = await client.query({
+        query: GET_USER_QUERY,
+        fetchPolicy: 'network-only',
+        variables: { userName: name }
+      });
+      if (user.data.getUser) {
+        const { name, id } = user.data.getUser;
+        props.history.push({
+          pathname: '/chat',
+          state: {
+            userName: name,
+            userId: id
+          }
+        });
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const validateUser = (e, name, password) => {
     e.preventDefault();
     if (name !== '' && password !== '') {
       setErrorMsg('');
-      console.log('Fetch user info from db. If incorrect set different error msg');
+      fetchUser(name, password);
       return;
     }
     setErrorMsg('Complete both fields to log in.');
@@ -79,4 +104,4 @@ const UserLogin = () => {
   )
 }
 
-export default UserLogin;
+export default withRouter(withApollo(UserLogin));
