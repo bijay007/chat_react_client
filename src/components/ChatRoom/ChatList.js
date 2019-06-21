@@ -11,6 +11,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1.2rem;
+  width: 90%;
 `
 
 const ChatList = (props) => {

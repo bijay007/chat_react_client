@@ -13,6 +13,7 @@ const MessageBox = styled.form`
   button {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 0.25rem;
     width: 20%;
     height: 100%;
