@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withApollo } from 'react-apollo';
 import styled from 'styled-components';
 import { GET_USER_QUERY } from 'data/queries';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import signup from 'assests/sign-up.png';
 
 const Wrapper = styled.div`
@@ -86,6 +86,7 @@ const UserLogin = (props) => {
             placeholder={'Enter your name...'} />
           <Input
             value={password}
+            type='password'
             onChange={e => setPassword(e.target.value)}
             placeholder={'Enter your password...'} />
           <LoginBtn type='submit'>Join chatroom</LoginBtn>
@@ -99,4 +100,4 @@ const UserLogin = (props) => {
   )
 }
 
-export default withRouter(withApollo(UserLogin));
+export default withApollo(UserLogin);

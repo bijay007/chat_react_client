@@ -5,12 +5,10 @@ import apolloClientOptions from './config/apolloConfig';
 import styled from 'styled-components';
 
 // Components
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Subscription from 'components/Subscription/Subscription';
 import Header from 'components/Header/Header';
-import UserLogin from 'components/Auth/UserLogin';
-import UserRegister from 'components/Auth/UserRegister';
-import ChatList from 'components/ChatRoom/ChatList';
+import Home from 'components/Home/Home';
 import background from 'assests/background.png';
 
 const Wrapper = styled.main`
@@ -24,17 +22,15 @@ const App = () => {
   const apolloClient = new ApolloClient({...apolloClientOptions});
   // Apollo provider as top level wrapper to manage local state and query manipulations
   return (
-    <Router>
+    <BrowserRouter>
       <ApolloProvider client={apolloClient}>
         <Subscription />
         <Wrapper>
           <Header />
-          <Route exact path='/' component={UserLogin} />
-          <Route exact path='/signup' component={UserRegister} />
-          <Route exact path='/chat' component={ChatList} />
+          <Home />
         </Wrapper>
       </ApolloProvider>
-    </Router>
+    </BrowserRouter>
   )
 }
 
