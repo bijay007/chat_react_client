@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import uuidv1 from 'uuid/v1';
 import { withApollo } from 'react-apollo';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { CREATE_USER_MUTATION } from 'data/mutations';
 
 const ModalContainer = styled.div({
@@ -150,4 +150,4 @@ const UserRegister = (props) => {
   )
 }
 
-export default withRouter(withApollo(UserRegister)); // -__-
+export default withApollo(UserRegister);
