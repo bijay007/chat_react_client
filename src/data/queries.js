@@ -40,8 +40,8 @@ const GET_CHATS_QUERY = gql`
   ${ChatFragment}
 `
 const GET_USER_QUERY = gql`
-  query GetUserQuery($userName: String!) {
-    getUser(userName: $userName) {
+  query GetUserQuery($userName: String!, $password: String!) {
+    getUser(userName: $userName, password: $password) {
       ...User
     }
   }

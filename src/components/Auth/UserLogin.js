@@ -17,7 +17,7 @@ const SignUp = styled.img`
   height: 4.5rem;
   width: auto;
   padding: 1rem;
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease;
   :hover {
     cursor: pointer;
     transform: scale(1.1);
@@ -53,7 +53,7 @@ const UserLogin = (props) => {
     const user = await client.query({
       query: GET_USER_QUERY,
       fetchPolicy: 'network-only',
-      variables: { userName: name }
+      variables: { userName: name, password }
     });
     if (user.data.getUser) {
       const { name, id } = user.data.getUser;
@@ -66,7 +66,7 @@ const UserLogin = (props) => {
       });
       return;
     }
-    setErrorMsg('User doesn\'t exist. Please sign up.');
+    setErrorMsg(user.errors[0].message);
   }
 
   const validateUser = (e, name, password) => {
