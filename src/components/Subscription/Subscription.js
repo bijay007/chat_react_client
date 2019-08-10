@@ -17,7 +17,9 @@ const withChatSubscriptionHOC = graphql(GET_CHATS_QUERY, subscriptionOptions);
 class Subscription extends Component {
 
   componentDidMount() {
-    debounce(() => {this.subscribeToMoreChats()}, 500)()
+    debounce(() => {
+      this.subscribeToMoreChats()
+    }, 500)()
   }
   subscribeToMoreChats = () => {
     this.props.chatStream.subscribeToMore({

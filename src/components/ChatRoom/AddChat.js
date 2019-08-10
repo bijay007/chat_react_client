@@ -20,7 +20,6 @@ const MessageBox = styled.form`
   }
   img {
     height: 80%;
-    width: auto;
   }
 `
 const Input = styled.input`
@@ -63,7 +62,7 @@ const AddChat = props => {
             <button type='submit'>
               <img alt='send-message' src={icon} /> {/* Icon made by Freepik from www.flaticon.com */}
             </button>
-          </MessageBox>     
+          </MessageBox>
         )
       }
     </ApolloConsumer>

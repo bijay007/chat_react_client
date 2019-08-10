@@ -142,7 +142,7 @@ const UserRegister = (props) => {
                   onChange={e => setUserPassword(e.target.value)} />
               </Block>
               <RegisterBtn type='submit'>Register</RegisterBtn>
-              <div className='errorMsg'>{errorMsg}</div>     
+              <div className='errorMsg'>{errorMsg}</div>
             </form>
           </div>
         </ModalBody>

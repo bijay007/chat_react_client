@@ -7,28 +7,25 @@ import styled from 'styled-components';
 // Components
 import { BrowserRouter } from "react-router-dom";
 import Subscription from 'components/Subscription/Subscription';
-import Header from 'components/Header/Header';
 import Home from 'components/Home/Home';
 import background from 'assests/background.png';
 
-const Wrapper = styled.main`
+const Main = styled.main`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
+  justify-content: center;
   background: #000 url(${background});
 `
+
 const App = () => {
   const apolloClient = new ApolloClient({...apolloClientOptions});
-  // Apollo provider as top level wrapper to manage local state and query manipulations
+  // Apollo provider as top level wrapper to manage local app state and query manipulations
   return (
     <BrowserRouter>
       <ApolloProvider client={apolloClient}>
         <Subscription />
-        <Wrapper>
-          <Header />
+        <Main>
           <Home />
-        </Wrapper>
+        </Main>
       </ApolloProvider>
     </BrowserRouter>
   )
