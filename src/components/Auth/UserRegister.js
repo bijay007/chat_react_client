@@ -73,7 +73,10 @@ const UserRegister = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [modalDismiss, setModalDismiss] = useState(false);
 
-  const createUser = async () => {
+  const createUser = async (e) => {
+    e.preventDefault();
+    const isFormValid = validateForm();
+    if (!isFormValid) return;
     let userCreated = await props.client.mutate({
       mutation: CREATE_USER_MUTATION,
       variables: {
@@ -85,7 +88,7 @@ const UserRegister = (props) => {
     });
     // NOTE: Can there be more than 1 error?? If so, both needs to be shown nicely in the UI.
     if (userCreated.errors) {
-      setErrorMsg(userCreated.errors[0].message);
+      setErrorMsg('Registration failed: ', userCreated.errors[0].message);
       return;
     }
     const { name, id } = userCreated.data.createUser;
@@ -98,14 +101,15 @@ const UserRegister = (props) => {
     });
   }
 
-  const basicValidation = async (e) => {
-    e.preventDefault();
+  const validateForm = () => {
     // TODO: Improve validation rules
     const emailValid = /\S+@\S+\.\S+/.test(email);
     const passwordValid = password.length >= 4;
-    userName && emailValid && passwordValid
-      ? createUser()
-      : setErrorMsg('Please fill all fields with valid data.');
+    if(userName && emailValid && passwordValid) {
+      return true;
+    }
+    setErrorMsg('Please fill all fields with valid data.');
+    return false;
   }
 
   const dismissModal = e => {
@@ -119,7 +123,7 @@ const UserRegister = (props) => {
     : <ModalContainer onClick={e => dismissModal(e)}>
         <ModalBody onClick={e => e.stopPropagation()}>
           <div className='auth-form-wrapper'>
-            <form className='auth-form' onSubmit={e => basicValidation(e)}>
+            <form className='auth-form' onSubmit={e => createUser(e)}>
               <Title>Sign up</Title>
               <Block>
                 <Label htmlFor='name'>Name</Label>

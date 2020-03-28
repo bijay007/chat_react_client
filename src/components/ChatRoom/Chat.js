@@ -4,14 +4,15 @@ import styled from 'styled-components';
 const ChatBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
   p {
     margin: 0 1.5rem;
+    padding: 0.2rem;
   }
 `
 const User = styled.div`
   display: flex;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0;
   align-items: baseline;
   .title {
     font-weight: bold;
@@ -25,13 +26,11 @@ const User = styled.div`
 `
 
 const Chat = props => {
-  const styleName = string => string.charAt(0).toUpperCase() + string.slice(1)
   const { senderName, message, created } = props.chat;
-
   return (
     <ChatBlock>
       <User>
-        <div className={'title'}>{styleName(senderName)}</div>
+        <div className={'title'}>{senderName}</div>
         <div className={'time'}>{created}</div>
       </User>
       <p>{message}</p>

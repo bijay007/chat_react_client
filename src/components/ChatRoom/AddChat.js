@@ -6,28 +6,32 @@ import { CREATE_MESSAGE_MUTATION } from 'data/mutations';
 
 const MessageBox = styled.form`
   display: flex;
+  justify-content: space-between;
   height: 3rem;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   margin: 2rem 0;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0.25rem;
-    width: 20%;
     height: 100%;
   }
   img {
-    height: 80%;
+    max-height: 75%;
   }
 `
 const Input = styled.input`
+  flex: 1;
   border: none;
   outline: none;
-  border-radius: 0.5rem;
   padding: 0.5rem;
-  width: 80%;
+`
+const Label = styled.label`
+  display: flex;
+  align-self: center;
+  padding: 0.15rem;
+  margin: 0 0.75rem;
+  color: grey;
+  font-weight: bold;
 `
 
 const AddChat = props => {
@@ -54,10 +58,12 @@ const AddChat = props => {
       {
         apolloClient => (
           <MessageBox onSubmit={(e) => sendMessage(e, message, apolloClient)}>
+            <Label>{userName} :</Label>
             <Input
               value={message}
-              placeholder={'write your message here...'}
+              placeholder={'Write your message here...'}
               onChange={e => setMessage(e.target.value)}
+              autoFocus
             />
             <button type='submit'>
               <img alt='send-message' src={icon} /> {/* Icon made by Freepik from www.flaticon.com */}
