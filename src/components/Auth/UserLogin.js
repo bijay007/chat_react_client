@@ -2,25 +2,22 @@ import React, { useState } from 'react';
 import { withApollo } from 'react-apollo';
 import styled from 'styled-components';
 import { GET_USER_QUERY } from 'data/queries';
-import { Link } from 'react-router-dom';
-import signup from 'assests/sign-up.png';
+import SwitchAuth from './SwitchAuth';
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
+  width: 50%;
+  transform-origin: 0 0;
+  animation: contract 1s ease;
+  @keyframes contract {
+    0% { transform: scale(1.1, 1.2); }
+    100% { transform: scale(1); }
+  }
   @media (max-width: 640px) {
     flex-direction: column;
-  }
-`
-const SignUp = styled.img`
-  height: 4.5rem;
-  width: auto;
-  padding: 1rem;
-  transition: transform 0.5s ease;
-  :hover {
-    cursor: pointer;
-    transform: scale(1.1);
   }
 `
 const Input = styled.input`
@@ -93,9 +90,7 @@ const UserLogin = (props) => {
           <div className='errorMsg'>{errorMsg}</div>
         </form>
       </div>
-      <Link to='/signup'>
-        <SignUp src={signup} />
-      </Link>
+      <SwitchAuth type="signup" />
     </Wrapper>
   )
 }
