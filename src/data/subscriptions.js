@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const GET_MESSAGE_SUBSCRIPTION = gql`
-  subscription GetMessageSubscription {
-    getMessage {
+const GET_PUBLIC_CHATS_SUBSCRIPTION = gql`
+  subscription GetPublicChatsSubscription {
+    getPublicChats {
       id
       senderId
       senderName
@@ -11,3 +11,22 @@ export const GET_MESSAGE_SUBSCRIPTION = gql`
     }
   }
 `
+
+const GET_PRIVATE_CHATS_SUBSCRIPTION = gql`
+  subscription GetPrivateChatsSubscription {
+    getPrivateChats {
+      id
+      senderId
+      senderName
+      receiverId
+      receiverName
+      message
+      created
+    }
+  }
+`
+
+export {
+  GET_PUBLIC_CHATS_SUBSCRIPTION,
+  GET_PRIVATE_CHATS_SUBSCRIPTION
+}

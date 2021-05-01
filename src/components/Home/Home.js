@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Header from 'components/Header/Header';
 import UserLogin from '../Auth/UserLogin';
 import UserRegister from '../Auth/UserRegister';
-import ChatList from '../ChatRoom/ChatList';
+import PublicChatList from '../ChatRoom/PublicChatList';
 
 const Home = props => {
   const { pathname } = props.location;
@@ -23,7 +23,7 @@ const Home = props => {
         <Route exact path='/' component={UserLogin} />
         <Route exact path='/login' component={UserLogin} />
         <Route exact path='/signup' component={UserRegister} />
-        <Route exact path='/chat' component={ChatList} />
+        <Route exact path='/chat' component={PublicChatList} />
       </Fragment>
     </Wrapper>
   )

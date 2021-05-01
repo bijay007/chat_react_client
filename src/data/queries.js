@@ -1,10 +1,22 @@
 import gql from 'graphql-tag';
 
-const ChatFragment = gql`
-	fragment Chat on Chat {
+const PublicChatFragment = gql`
+	fragment PublicChat on PublicChat {
 		id
     senderId
     senderName
+    message
+    created
+	}
+`
+
+const PrivateChatFragment = gql`
+	fragment PrivateChat on PrivateChat {
+		id
+    senderId
+    senderName
+    receiverId
+    receiverName
     message
     created
 	}
@@ -15,29 +27,33 @@ const UserFragment = gql`
     id,
     name,
     email,
-    chats {
-      ...Chat
+    publicChats {
+      ...PublicChat
+    }
+    privateChats {
+      ...PrivateChat
     }
   }
-  ${ChatFragment}
+  ${PublicChatFragment}
+  ${PrivateChatFragment}
 `
 
-const GET_MOCK_CHAT_QUERY = gql`
-  query GetMockChatQuery {
+const GET_PUBLIC_MOCK_CHAT_QUERY = gql`
+  query GetPublicMockChatQuery {
     getMockChat {
-      ...Chat
+      ...PublicChat
     }
   }
-  ${ChatFragment}
+  ${PublicChatFragment}
 `
 
-const GET_CHATS_QUERY = gql`
-  query GetChatsQuery {
-    getChats {
-      ...Chat
+const GET_PUBLIC_CHATS_QUERY = gql`
+  query GetPublicChatsQuery {
+    getPublicChats {
+      ...PublicChat
     }
   }
-  ${ChatFragment}
+  ${PublicChatFragment}
 `
 const GET_USER_QUERY = gql`
   query GetUserQuery($userName: String!, $password: String!) {
@@ -49,9 +65,10 @@ const GET_USER_QUERY = gql`
 `
 
 export {
-  GET_MOCK_CHAT_QUERY,
-  GET_CHATS_QUERY,
+  GET_PUBLIC_MOCK_CHAT_QUERY,
+  GET_PUBLIC_CHATS_QUERY,
   GET_USER_QUERY,
-  ChatFragment,
+  PublicChatFragment,
+  PrivateChatFragment,
   UserFragment
 }

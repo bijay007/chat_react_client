@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import styled from 'styled-components';
 import icon from 'assests/send-icon.svg';
-import { CREATE_MESSAGE_MUTATION } from 'data/mutations';
+import { CREATE_PUBLIC_CHAT_MUTATION } from 'data/mutations';
 
 const MessageBox = styled.form`
   display: flex;
@@ -42,7 +42,7 @@ const AddChat = props => {
     e.preventDefault();
     if (message) {
       await apolloClient.mutate({
-        mutation: CREATE_MESSAGE_MUTATION,
+        mutation: CREATE_PUBLIC_CHAT_MUTATION,
         variables: {
           senderId: userId,
           senderName: userName,

@@ -2,16 +2,21 @@ import url from './endpoints';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { split } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http';
-import { WebSocketLink } from 'apollo-link-ws'
-import { getMainDefinition } from 'apollo-utilities'
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
+
+const localHttpsUrl = `${url.domainName.localHttps}:${url.port.https}`;
+const localWssUrl = `${url.domainName.localWss}:${url.port.wss}`;
+
+// Note: We can use some external library to ping to local port 4000 and receive confirmation that it's the backend app of the chat-app. If we can do so, we can use it to define the urls. However, since I'm not doing so, if you want to test it locally, you have to manually remove the remote prod urls and use the locals ones from above.
 
 const httpLink = new HttpLink({
-  uri: url.ip.https || url.ip.local,
+  uri: url.domainName.https || localHttpsUrl,
   credentials: 'same-origin',
 })
 
 const wsLink = new WebSocketLink({
-	uri: url.ip.wss || url.ip.local,
+	uri: url.domainName.wss || localWssUrl,
 	options: {
 		reconnect: true,
 	},
