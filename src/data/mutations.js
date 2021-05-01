@@ -20,7 +20,7 @@ const CREATE_PRIVATE_CHAT_MUTATION = gql`
 
 const CREATE_PUBLIC_CHAT_MUTATION = gql`
   mutation CreatePublicChatMutation($senderId: ID!, $senderName: String!, $message: String!) {
-    createPrivateChat(
+    createPublicChat(
       senderId: $senderId,
       senderName: $senderName,
       message: $message

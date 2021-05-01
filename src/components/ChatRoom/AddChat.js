@@ -41,15 +41,19 @@ const AddChat = props => {
   const sendMessage =  async function (e, message, apolloClient) {
     e.preventDefault();
     if (message) {
-      await apolloClient.mutate({
-        mutation: CREATE_PUBLIC_CHAT_MUTATION,
-        variables: {
-          senderId: userId,
-          senderName: userName,
-          message: message
-        }
-      })
-      setMessage('');
+      try {
+        await apolloClient.mutate({
+          mutation: CREATE_PUBLIC_CHAT_MUTATION,
+          variables: {
+            senderId: userId,
+            senderName: userName,
+            message: message
+          }
+        })
+        setMessage('');
+      } catch(e) {
+        throw new Error(e);
+      }
     }
   }
 

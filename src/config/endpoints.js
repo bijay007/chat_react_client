@@ -1,13 +1,13 @@
 const url = {
   domainName: {
-    localWss: 'wss://localhost',
-    localHttps: 'https://localhost',
+    localWs: 'ws://localhost',
+    localHttp: 'http://localhost',
     https: 'https://chat-graphql-server.herokuapp.com/',
     wss: 'wss://chat-graphql-server.herokuapp.com/'
   },
   port: {
-    https: '4000',
-    wss: '4000'
+    http: '4000',
+    ws: '4000'
   }
 }
 

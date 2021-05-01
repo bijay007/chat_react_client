@@ -22,7 +22,10 @@ const PublicChatList = (props) => {
         ({ loading, error, data }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
-          const chats = data.getChats.slice(data.getChats.length - 8);
+          let chats = data.getPublicChats;
+          if (chats.length > 8) {
+            chats = data.getPublicChats.slice(data.getPublicChats.length - 8);
+          }
           return (
             <Wrapper>
               {

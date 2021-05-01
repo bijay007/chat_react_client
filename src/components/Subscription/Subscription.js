@@ -26,7 +26,7 @@ class Subscription extends Component {
       document: GET_PUBLIC_CHATS_SUBSCRIPTION,
       updateQuery: (previousData, { subscriptionData }) => {
         return {
-          getChats: [...previousData.getChats, subscriptionData.data.getMessage]
+          getPublicChats: [...previousData.getPublicChats, subscriptionData.data.getPublicChats]
         }
       }
     });
