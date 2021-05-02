@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 // Apollo
-import { Query } from 'react-apollo';
+import { Query, withApollo } from 'react-apollo';
 import { GET_PUBLIC_CHATS_QUERY } from 'data/queries';
 // Components
 import Chat from 'components/ChatRoom/Chat';
@@ -17,6 +17,13 @@ const Wrapper = styled.section`
 
 const PublicChatList = (props) => {
   const { userId, userName } = props.location.state;
+  props.client.writeData({
+    data: {
+      id: 'logged_user',
+      loggedUser: userName
+    }
+  }); // storing current user info in local apollo cache for quick searches
+
   return (
     <Query query={GET_PUBLIC_CHATS_QUERY}>
       {
@@ -41,4 +48,4 @@ const PublicChatList = (props) => {
   )
 }
 
-export default PublicChatList;
+export default withApollo(PublicChatList);
