@@ -10,8 +10,9 @@ import AddChat from 'components/ChatRoom/AddChat';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   padding: 1.2rem;
-  width: 90%;
+  width: 70%;
 `
 
 const PublicChatList = (props) => {

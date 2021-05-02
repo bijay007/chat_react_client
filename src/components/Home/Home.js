@@ -6,12 +6,10 @@ import UserLogin from '../Auth/UserLogin';
 import UserRegister from '../Auth/UserRegister';
 import PublicChatList from '../ChatRoom/PublicChatList';
 
-const Home = props => {
-  const { pathname } = props.location;
-  const bodyWidth = pathname === '/chat' ? '80vw' : '100%';
+const Home = () => {
   const Wrapper = styled.section`
     padding: 2rem;
-    width: ${bodyWidth};
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

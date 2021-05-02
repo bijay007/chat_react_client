@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ChatBlock = styled.div`
+const ChatBlock = styled.article`
   display: flex;
   flex-direction: column;
   padding-bottom: 0.5rem;
@@ -18,7 +18,7 @@ const User = styled.div`
     font-weight: bold;
     font-size: 1.1rem;
   }
-  .time {
+  time {
     padding-left: 0.5rem;
     color: grey;
     font-size: 0.9rem;
@@ -30,8 +30,8 @@ const Chat = props => {
   return (
     <ChatBlock>
       <User>
-        <div className={'title'}>{senderName}</div>
-        <div className={'time'}>{created}</div>
+        <caption className={'title'}>{senderName}</caption>
+        <time>{created}</time>
       </User>
       <p>{message}</p>
     </ChatBlock>

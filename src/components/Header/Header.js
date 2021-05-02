@@ -26,6 +26,7 @@ const Title = styled.div`
     flex-direction: column;
   }
 `
+
 const Header = () => (
   <Wrapper>
     <Link to='/'>

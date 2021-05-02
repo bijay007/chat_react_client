@@ -1,25 +1,25 @@
 import gql from 'graphql-tag';
 
 const PublicChatFragment = gql`
-	fragment PublicChat on PublicChat {
-		id
+  fragment PublicChat on PublicChat {
+    id
     senderId
     senderName
     message
     created
-	}
+  }
 `
 
 const PrivateChatFragment = gql`
-	fragment PrivateChat on PrivateChat {
-		id
+  fragment PrivateChat on PrivateChat {
+    id
     senderId
     senderName
     receiverId
     receiverName
     message
     created
-	}
+  }
 `
 
 const UserFragment = gql`

@@ -16,6 +16,13 @@ const Wrapper = styled.div`
     0% { transform: scale(0.9, 0.8); }
     100% { transform: scale(1); }
   }
+  fieldset {
+    padding: 0.5rem 1.8rem;
+    border: none;
+    label {
+      paddingRight: 0.5rem;
+    }
+  }
 `
 const Title = styled.h2`
   margin: 0.5rem auto;
@@ -26,12 +33,6 @@ const Title = styled.h2`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `
-const Block = styled.div({
-  padding: '0.5rem 1.8rem',
-})
-const Label = styled.label({
-  paddingRight: '8px'
-})
 const Input = styled.input({
   marginTop: '4px',
   padding: '5px',
@@ -99,26 +100,26 @@ const UserRegister = (props) => {
       <div className='auth-form-wrapper'>
         <form className='auth-form' onSubmit={e => createUser(e)}>
           <Title>Sign up</Title>
-          <Block>
-            <Label htmlFor='name'>Name</Label>
+          <fieldset>
+            <label htmlFor='name'>Name</label>
             <Input value={userName}
               id='name'
               placeholder={props.name}
               onChange={e => setUserName(e.target.value)} />
-          </Block>
-          <Block>
-            <Label htmlFor='email'>Email</Label>
+          </fieldset>
+          <fieldset>
+            <label htmlFor='email'>Email</label>
             <Input value={email}
               id='email'
               onChange={e => setUserEmail(e.target.value)} />
-          </Block>
-          <Block>
-            <Label htmlFor='password'>Password</Label>
+          </fieldset>
+          <fieldset>
+            <label htmlFor='password'>Password</label>
             <Input value={password}
               type='password'
               id='password'
               onChange={e => setUserPassword(e.target.value)} />
-          </Block>
+          </fieldset>
           <RegisterBtn type='submit'>Register</RegisterBtn>
           <div className='errorMsg'>{errorMsg}</div>
         </form>
