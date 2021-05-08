@@ -9,13 +9,14 @@ import AddChat from 'components/ChatRoom/AddChat';
 
 const Wrapper = styled.section`
   display: flex;
+  flex: 4;
   flex-direction: column;
   align-self: flex-start;
-  padding: 1.2rem;
-  width: 70%;
+  padding: 1rem;
 `
 
-const PublicChatList = (props) => {
+const PublicChatView = (props) => {
+  console.log(props)
   const { userId, userName } = props.location.state;
   props.client.writeData({
     data: {
@@ -48,4 +49,4 @@ const PublicChatList = (props) => {
   )
 }
 
-export default withApollo(PublicChatList);
+export default withApollo(PublicChatView);

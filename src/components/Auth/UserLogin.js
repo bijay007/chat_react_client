@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0.5rem;
+  padding: 3rem 0.5rem 0.5rem 0.5rem;
   width: 50%;
   transform-origin: 0 0;
   animation: contract 1s ease;

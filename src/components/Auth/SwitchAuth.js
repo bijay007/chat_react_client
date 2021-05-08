@@ -7,7 +7,7 @@ import login from 'assests/login.svg';
 const Action = styled.img`
   height: 4rem;
   width: auto;
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   transition: transform 0.5s ease;
   :hover {
     cursor: pointer;

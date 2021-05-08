@@ -1,3 +1,4 @@
+/* Global properties/variables */
 * {
   margin: 0;
   padding: 0;
@@ -9,13 +10,21 @@
   font-size: 16px;
 }
 
-html, body, #root {
-  height: 100%;
+html, body, #root, main {
+  box-sizing: border-box;
+  min-height: 100vh;
+  height: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  --primary-color: #44c8ec;
+  --secondary-color: #b3c2ce;
+  --tertiary-color: #748cf8;
 }
 
 /* Default elements custom styling */

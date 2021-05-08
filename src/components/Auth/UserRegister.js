@@ -8,7 +8,7 @@ import { CREATE_USER_MUTATION } from 'data/mutations';
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem 0.5rem;
+  padding: 3rem 0.5rem 0.5rem 0.5rem;
   width: 70%;
   transform-origin: 0 0;
   animation: expand 1s ease;
@@ -23,11 +23,14 @@ const Wrapper = styled.div`
       paddingRight: 0.5rem;
     }
   }
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `
 const Title = styled.h2`
   margin: 0.5rem auto;
-  letter-spacing: 2px;
-  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
   background: linear-gradient(to left, #f7606a 10%, #330867 80%);
   background-clip: 'text';
   -webkit-background-clip: text;
@@ -69,7 +72,6 @@ const UserRegister = (props) => {
         password: password
       }
     });
-    // NOTE: Can there be more than 1 error?? If so, both needs to be shown nicely in the UI.
     if (userCreated.errors) {
       setErrorMsg('Registration failed: ', userCreated.errors[0].message);
       return;

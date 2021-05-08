@@ -9,7 +9,7 @@ const MessageBox = styled.form`
   justify-content: space-between;
   height: 3rem;
   border-radius: 0.4rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   button {
     padding: 0.25rem;
