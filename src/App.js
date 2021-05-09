@@ -1,6 +1,5 @@
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
-import { ApolloClient } from 'apollo-client';
+import { ApolloProvider, ApolloClient } from '@apollo/client';
 import apolloClientOptions from './config/apolloConfig';
 
 // Components

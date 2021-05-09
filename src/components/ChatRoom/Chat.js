@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withApollo } from 'react-apollo';
+import { withApollo } from '@apollo/client/react/hoc';
+import openPrivateChatTab from '../../config/appStateVars';
 
 const ChatBlock = styled.article`
   display: flex;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withApollo } from 'react-apollo';
+import { withApollo } from '@apollo/client/react/hoc';
 import styled from 'styled-components';
 import { GET_USER_QUERY } from 'data/queries';
 import SwitchAuth from './SwitchAuth';

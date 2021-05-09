@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import uuidv1 from 'uuid/v1';
-import { withApollo } from 'react-apollo';
+import { withApollo } from '@apollo/client/react/hoc';
 import SwitchAuth from './SwitchAuth';
 import { CREATE_USER_MUTATION } from 'data/mutations';
 

@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { GET_PUBLIC_CHATS_QUERY } from 'data/queries';
 import { GET_PUBLIC_CHATS_SUBSCRIPTION } from 'data/subscriptions';
 import debounce from 'lodash.debounce';
-import { graphql, compose, withApollo } from 'react-apollo';
+import { flowRight as compose } from 'lodash';
+import { graphql, withApollo } from '@apollo/client/react/hoc';
 
 const subscriptionOptions = {
   name: 'publicChatStream',

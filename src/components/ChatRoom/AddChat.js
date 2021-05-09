@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ApolloConsumer } from 'react-apollo';
+import { ApolloConsumer } from '@apollo/client';
 import styled from 'styled-components';
 import icon from 'assests/send-icon.svg';
 import { CREATE_PUBLIC_CHAT_MUTATION } from 'data/mutations';

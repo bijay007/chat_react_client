@@ -6,7 +6,7 @@ import PrivateChatView from './ChatViewTypes/PrivateChatView';
 const MainChatView = styled.main`
   display: flex;
   height: 100vh;
-  width: 100vw;
+  max-width: 100%;
 `
 const ChatView = (props) => {
   const { location } = props;
