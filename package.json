@@ -11,8 +11,10 @@
     "lodash.debounce": "^4.0.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
+    "redux": "^4.1.0",
     "styled-components": "^4.2.0",
     "subscriptions-transport-ws": "^0.9.16",
     "uuid": "^3.3.2"
