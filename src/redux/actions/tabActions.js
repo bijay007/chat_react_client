@@ -1,14 +1,6 @@
-const openTab = () => ({
-  type: 'OPEN_TAB',
-  tabOpen: true,
-});
+const togglePrivateTab = (isOpen) => ({
+  type: 'TOGGLE_TAB',
+  tabOpen: !!isOpen,
+})
 
-const closeTab = () => ({
-  type: 'CLOSE_TAB',
-  tabOpen: false,
-});
-
-export {
-  openTab,
-  closeTab,
-};
+export default togglePrivateTab;

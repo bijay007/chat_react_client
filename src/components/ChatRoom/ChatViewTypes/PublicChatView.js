@@ -7,24 +7,18 @@ import { GET_PUBLIC_CHATS_QUERY } from 'data/queries';
 // Components
 import Chat from 'components/ChatRoom/Chat';
 import AddChat from 'components/ChatRoom/AddChat';
+import { currentLoggedUserVar } from 'data/models';
 
 const Wrapper = styled.section`
   display: flex;
-  flex: 4;
   flex-direction: column;
   align-self: flex-start;
   padding: 1rem;
 `
 
 const PublicChatView = (props) => {
-  console.log(props);
   const { userId, userName } = props.location.state;
-/*   props.client.writeData({
-    data: {
-      id: 'logged_user',
-      loggedUser: userName
-    }
-  }); */ //use reactive variables in apollo v3+
+  currentLoggedUserVar(userName); // setting reactive variable
 
   return (
     <Query query={GET_PUBLIC_CHATS_QUERY}>

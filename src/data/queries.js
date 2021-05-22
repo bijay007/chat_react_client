@@ -55,6 +55,16 @@ const GET_PUBLIC_CHATS_QUERY = gql`
   }
   ${PublicChatFragment}
 `
+
+const GET_PRIVATE_CHATS_QUERY = gql`
+  query GetPrivateChatsQuery {
+    getPrivateChats {
+      ...PrivateChat
+    }
+  }
+  ${PrivateChatFragment}
+`
+
 const GET_USER_QUERY = gql`
   query GetUserQuery($userName: String!, $password: String!) {
     getUser(userName: $userName, password: $password) {
@@ -67,6 +77,7 @@ const GET_USER_QUERY = gql`
 export {
   GET_PUBLIC_MOCK_CHAT_QUERY,
   GET_PUBLIC_CHATS_QUERY,
+  GET_PRIVATE_CHATS_QUERY,
   GET_USER_QUERY,
   PublicChatFragment,
   PrivateChatFragment,
