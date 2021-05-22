@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { Route, withRouter } from 'react-router';
 import styled from 'styled-components';
-import background from 'assests/app-background.jpg';
 import Header from 'components/Header/Header';
 import UserLogin from '../Auth/UserLogin';
 import UserRegister from '../Auth/UserRegister';
@@ -12,7 +11,6 @@ const Home = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url(${background});
   `;
 
   return (

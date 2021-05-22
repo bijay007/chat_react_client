@@ -8,12 +8,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
-html, body, #root, main {
-  box-sizing: border-box;
-  min-height: 100vh;
-  height: auto;
+html {
+  height: 100%;
+  width: fit-content;
+}
+
+body {
+  background: url('assets/app-background.jpg');
+  height: 100%;
+  position: relative;
 }
 
 code {

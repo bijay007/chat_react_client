@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import signup from 'assests/sign-up.png';
-import login from 'assests/login.svg';
+import signup from 'assets/icons/sign-up-icon.png';
+import login from 'assets/icons/login-icon.svg';
 
 const Action = styled.img`
   height: 4rem;

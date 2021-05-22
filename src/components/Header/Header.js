@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import home from 'assests/home-icon.svg';
+import home from 'assets/icons/home-icon.svg';
 
 const Wrapper = styled.header`
   display: flex;
